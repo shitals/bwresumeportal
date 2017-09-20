@@ -2,7 +2,7 @@ DROP DATABASE IF EXISTS resume_portal_db;
 
 CREATE DATABASE resume_portal_db;
 
-USE resume_manager;
+USE resume_portal_db;
 
 DROP TABLE IF EXISTS skill;
 
@@ -51,3 +51,8 @@ CREATE TABLE resume_skill (
 
 #INSERT INTO skill(name) VALUES ('Java');
 #INSERT INTO user(user_id,first_name,middle_name,last_name) VALUES ('dummyid','dummyfirst','dummymiddle','dummylast');
+
+
+
+CREATE USER 'bwuser'@'localhost' IDENTIFIED BY 'password';
+GRANT ALL ON resume_portal_db.* TO 'bwuser'@'localhost';
