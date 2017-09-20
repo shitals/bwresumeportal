@@ -31,8 +31,8 @@ repositories {
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-freemarker')
-	//compile('org.springframework.boot:spring-boot-starter-jdbc')
+	compile('org.springframework.boot:spring-boot-starter-jdbc')
 	compile('org.springframework.boot:spring-boot-starter-web')
-	//runtime('mysql:mysql-connector-java')
+	runtime('mysql:mysql-connector-java')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
