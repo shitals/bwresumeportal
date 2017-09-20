@@ -13,6 +13,12 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
+apply plugin: 'war'
+
+war {
+    baseName = 'bwresumeportal'
+    version =  '0.1.0'
+} 
 
 group = 'com.org.resumemgmt'
 version = '0.0.1-SNAPSHOT'
