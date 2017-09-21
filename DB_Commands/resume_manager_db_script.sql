@@ -49,7 +49,28 @@ CREATE TABLE resume_skill (
 ) ENGINE=INNODB;
 
 
-#INSERT INTO skill(name) VALUES ('Java');
+INSERT INTO skill(name) VALUES ('Tableau');
+INSERT INTO skill(name) VALUES ('PHP');
+INSERT INTO skill(name) VALUES ('Kafka');
+INSERT INTO skill(name) VALUES ('Selenium');
+INSERT INTO skill(name) VALUES ('SOA');
+INSERT INTO skill(name) VALUES ('Jmeter');
+INSERT INTO skill(name) VALUES ('Devtest');
+INSERT INTO skill(name) VALUES ('ETL');
+INSERT INTO skill(name) VALUES ('Docker');
+INSERT INTO skill(name) VALUES ('Gitlab');
+INSERT INTO skill(name) VALUES ('.NET');
+INSERT INTO skill(name) VALUES ('BA');
+INSERT INTO skill(name) VALUES ('Data Warehousing');
+INSERT INTO skill(name) VALUES ('QA Automation');
+INSERT INTO skill(name) VALUES ('GCF');
+INSERT INTO skill(name) VALUES ('Cloud Foundry');
+INSERT INTO skill(name) VALUES ('PCF');
+INSERT INTO skill(name) VALUES ('Java Microservices');
+INSERT INTO skill(name) VALUES ('Machine learning');
+INSERT INTO skill(name) VALUES ('R');
+INSERT INTO skill(name) VALUES ('SharePoint');
+
 #INSERT INTO user(user_id,first_name,middle_name,last_name) VALUES ('dummyid','dummyfirst','dummymiddle','dummylast');
 
 
