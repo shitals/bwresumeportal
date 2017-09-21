@@ -1,10 +1,13 @@
 package com.bitwiseglobal.resumemgmt.bd;
 
 import java.math.BigInteger;
+import java.util.Set;
+import java.util.TreeSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.bitwiseglobal.resumemgmt.dto.ResumeDisplayDTO;
 import com.bitwiseglobal.resumemgmt.entityvo.Resume;
 import com.bitwiseglobal.resumemgmt.entityvo.Skill;
 import com.bitwiseglobal.resumemgmt.entityvo.User;
@@ -50,6 +53,40 @@ public class ResumeMgmtBD {
 		resumeRepository.save(resume);
 	}
 	
+	public Set<ResumeDisplayDTO> getResumeBySkills(String commaSeperatedSkillsStr) {
+		Set<Skill> skillSet = new TreeSet<>();
+		Skill skill;
+		for(String skillStr : commaSeperatedSkillsStr.split(",")) {
+			skill = new Skill();
+			skill.setName(skillStr);
+			skillSet.add(skill);
+		}
+		return getResumeBySkills(skillSet);
+	}
 	
+	public Set<ResumeDisplayDTO> getResumeBySkills(Set<Skill> skills) {
+		Set<ResumeDisplayDTO> resumeDisplayDTOSet = new TreeSet<>();
+		for (Resume resume : resumeRepository.findAll()) {
+			if(containsAtleastOne(resume.getSkills(), skills))
+				resumeDisplayDTOSet.add(convertToPresentationDTO(resume));
+		}
+		return resumeDisplayDTOSet;
+	}
 	
+	private ResumeDisplayDTO convertToPresentationDTO(Resume resume) {
+		ResumeDisplayDTO resumeDisplayDTO = new ResumeDisplayDTO();
+		resumeDisplayDTO.setResumeName(resume.getName());
+		resumeDisplayDTO.setUploadedBy(resume.getUser().getUserId());
+		resumeDisplayDTO.setUploadLink(resume.getFilePath());
+		return resumeDisplayDTO;
+	}
+
+	private boolean containsAtleastOne(Set<Skill> sourceSkills, Set<Skill> targetSkills) {
+		boolean returnValue = false;
+		for (Skill skill : sourceSkills) {
+			if (targetSkills.contains(skill))
+				returnValue = true;
+		}
+		return returnValue;
+	}
 }
