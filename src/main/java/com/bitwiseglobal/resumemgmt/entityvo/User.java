@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class User {
@@ -18,7 +19,10 @@ public class User {
 	
 	@Column(name="user_id", nullable=false, length=50)
 	String userId;
-	 
+
+	@Column(name="password", nullable=false, length=10)
+	String password;
+	
 	@Column(name="first_name", nullable=false, length=200)
 	String firstName;
 	
@@ -28,8 +32,8 @@ public class User {
 	@Column(name="last_name", nullable=false, length=200)
 	String lastName;
 	
-	@Column(name="upload_timestamp", nullable=false)
-	Timestamp uploadTimestamp;
+	@OneToOne(mappedBy = "user")
+	Resume resume;
 	
 	public BigInteger getUserKey() {
 		return userKey;
@@ -42,6 +46,12 @@ public class User {
 	}
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	public String getFirstName() {
 		return firstName;
@@ -61,11 +71,4 @@ public class User {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public Timestamp getUploadTimestamp() {
-		return uploadTimestamp;
-	}
-	public void setUploadTimestamp(Timestamp uploadTimestamp) {
-		this.uploadTimestamp = uploadTimestamp;
-	}
-	
 }
