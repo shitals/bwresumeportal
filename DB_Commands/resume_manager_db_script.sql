@@ -17,10 +17,10 @@ DROP TABLE IF EXISTS user;
 CREATE TABLE user (
   user_key BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   user_id VARCHAR(50) NOT NULL,
+  password VARCHAR(10) NOT NULL,
   first_name VARCHAR(200) NOT NULL,
   middle_name VARCHAR(200),
   last_name VARCHAR(200) NOT NULL,
-  upload_timestamp TIMESTAMP NOT NULL,
   PRIMARY KEY (user_key)
 )ENGINE=INNODB;
 
