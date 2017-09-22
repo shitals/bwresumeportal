@@ -3,6 +3,8 @@
  */
 package com.bitwiseglobal.resumemgmt.controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +13,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+
 import com.bitwiseglobal.resumemgmt.bd.ResumeMgmtBD;
+
 
 /**
  * @author Chetan Menge
@@ -19,6 +23,8 @@ import com.bitwiseglobal.resumemgmt.bd.ResumeMgmtBD;
  */
 @Controller
 public class LandingController {
+	
+	
 	
 	private static final Logger logger=LoggerFactory.getLogger(LandingController.class);
 	
@@ -28,7 +34,7 @@ public class LandingController {
 	@RequestMapping(value="/rmLanding",method=RequestMethod.GET)
 	public String landing(Model model) {
 		final String METHO_DNAME="RMLandingController.landing";
-		logger.debug(METHO_DNAME+"Started");
+		logger.debug(METHO_DNAME+"Started");		
 		
 		model.addAttribute("name","[Bitwise Demo]");
 		
