@@ -26,6 +26,9 @@
     <!-- Custom Fonts -->
     <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+    <!-- Dropdown Checkboxes -->
+    <link rel="stylesheet" href="css/dropdownCheckboxes.min.css">
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -54,7 +57,6 @@
             <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
-                <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
@@ -96,51 +98,80 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Bitwise Resume Portal</h1>
+                    <h1 class="page-header">
+                        <i class="fa fa-cloud-upload fa-1x"></i>
+                        Upload Profile
+                    </h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
             <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-cloud-upload fa-5x"></i>
-                                </div>
-                                <a href="bw-upload.html" style="color: #fff">
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">Upload</div>
-                                    <!-- <div>New Comments!</div> -->
-                                </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-green">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-search fa-5x"></i>
-                                </div>
-                                <a href="bw-search.html" style="color: #fff">
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">Search</div>
-                                </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<form class="form-horizontal">
+<fieldset>
+
+<!-- Select Basic -->
+<div class="form-group">
+<label class="col-md-4 control-label" for="selectbasic">Select Skills</label>
+
+  <div class="col-md-4 dropdown cq-dropdown" data-name='statuses'>
+      <button class="btn btn-default btn-sm dropdown-toggle" type="button" id="dropdown1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> Category <span class="caret"></span> </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdown1">
+            <li><label class="radio-btn"><input type="checkbox" value='Tableau'>Tableau</label></li>
+            <li><label class="radio-btn"><input type="checkbox" value='PHP'>PHP</label></li>
+            <li><label class="radio-btn"><input type="checkbox" value='Kafka'>Kafka</label></li>
+            <li><label class="radio-btn"><input type="checkbox" value='Selenium'>Selenium</label></li>
+            <li><label class="radio-btn"><input type="checkbox" value='SOA'>SOA</label></li>
+            <li><label class="radio-btn"><input type="checkbox" value='Jmeter'>Jmeter</label></li>
+            <li><label class="radio-btn"><input type="checkbox" value='Devtest'>Devtest</label></li>
+            <li><label class="radio-btn"><input type="checkbox" value='ETL'>ETL</label></li>
+            <li><label class="radio-btn"><input type="checkbox" value='Docker'>Docker</label></li>
+            <li><label class="radio-btn"><input type="checkbox" value='Gitlab'>Gitlab</label></li>
+            <li><label class="radio-btn"><input type="checkbox" value='.NET'>.NET</label></li>
+            <li><label class="radio-btn"><input type="checkbox" value='BA'>BA</label></li>
+            <li><label class="radio-btn"><input type="checkbox" value='Data Warehousing'>Data Warehousing</label></li>
+            <li><label class="radio-btn"><input type="checkbox" value='QA Automation'>QA Automation</label></li>
+            <li><label class="radio-btn"><input type="checkbox" value='GCF'>GCF</label></li>
+            <li><label class="radio-btn"><input type="checkbox" value='Cloud Foundry'>Cloud Foundry</label></li>
+            <li><label class="radio-btn"><input type="checkbox" value='PCF'>PCF</label></li>
+            <li><label class="radio-btn"><input type="checkbox" value='Java Microservices'>Java Microservices</label></li>
+            <li><label class="radio-btn"><input type="checkbox" value='Machine learning'>Machine learning</label></li>
+            <li><label class="radio-btn"><input type="checkbox" value='R'>R</label></li>
+            <li><label class="radio-btn"><input type="checkbox" value='SharePoint'>SharePoint</label></li>
+        <li class='text-center'>
+          <button type='button' class='btn btn-xs btn-default clear close-dropdown' value='Clear'>Clear</button>
+          <button type='button' class='btn btn-xs btn-default save' value='Save'>Save</button>
+        </li>
+      </ul>
+    </div>
+</div>
+
+<!-- File Button --> 
+<div class="form-group">
+  <label class="col-md-4 control-label" for="filebutton">Upload Resume</label>
+  <div class="col-md-4">
+    <input id="filebutton" name="filebutton" class="input-file" type="file">
+  </div>
+</div>
+
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="singlebutton"></label>
+  <div class="col-md-4">
+    <button id="singlebutton" name="singlebutton" class="btn btn-primary">Save</button>
+  </div>
+</div>
+
+</fieldset>
+</form>
+
             </div>
-            <!-- /.row -->
         </div>
         <!-- /#page-wrapper -->
+
     </div>
     <!-- /#wrapper -->
+
     <!-- jQuery -->
     <script src="js/jquery.min.js"></script>
 
@@ -151,12 +182,15 @@
     <script src="js/metisMenu.min.js"></script>
 
     <!-- Morris Charts JavaScript -->
-<!--     <script src="../vendor/raphael/raphael.min.js"></script>
+    <!-- <script src="../vendor/raphael/raphael.min.js"></script>
     <script src="../vendor/morrisjs/morris.min.js"></script>
     <script src="../data/morris-data.js"></script> -->
 
     <!-- Custom Theme JavaScript -->
     <script src="js/sb-admin-2.js"></script>
+
+    <!-- Dropdown Checkboxes -->
+    <script src="js/dropdownCheckboxes.min.js"></script>
 
 </body>
 
