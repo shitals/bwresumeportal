@@ -54,7 +54,6 @@
             <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
-                <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
@@ -81,7 +80,7 @@
                             <a href="index.html"><i class="fa fa-cloud fa-fw"></i> Resume Portal - Home</a>
                         </li>
                         <li>
-                            <a href="/uploadLanding"><i class="fa fa-cloud-upload fa-fw"></i> Upload</a>
+                            <a href="bw-upload.html"><i class="fa fa-cloud-upload fa-fw"></i> Upload</a>
                         </li>
                         <li>
                             <a href="bw-search.html"><i class="fa fa-search fa-fw"></i> Search</a>
@@ -96,51 +95,25 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Bitwise Resume Portal</h1>
+                    <h1 class="page-header">
+                        <i class="fa fa-search fa-1x"></i>
+                        Search Profiles
+                    </h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
             <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-cloud-upload fa-5x"></i>
-                                </div>
-                                <a href="/uploadLanding" style="color: #fff">
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">Upload</div>
-                                    <!-- <div>New Comments!</div> -->
-                                </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-green">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-search fa-5x"></i>
-                                </div>
-                                <a href="bw-search.html" style="color: #fff">
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">Search</div>
-                                </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
+
+
             </div>
-            <!-- /.row -->
         </div>
         <!-- /#page-wrapper -->
+
     </div>
     <!-- /#wrapper -->
+
     <!-- jQuery -->
     <script src="js/jquery.min.js"></script>
 
