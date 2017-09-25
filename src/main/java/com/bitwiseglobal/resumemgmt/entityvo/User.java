@@ -31,10 +31,7 @@ public class User {
 	
 	@Column(name="last_name", nullable=false, length=200)
 	String lastName;
-	
-	@OneToOne(mappedBy = "user")
-	Resume resume;
-	
+		
 	public BigInteger getUserKey() {
 		return userKey;
 	}
