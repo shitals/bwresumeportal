@@ -3,28 +3,28 @@
  */
 package com.bitwiseglobal.resumemgmt.controller;
 
-import com.amazonaws.services.s3.model.PutObjectResult;
-import com.bitwiseglobal.resumemgmt.S3Wrapper;
-import com.bitwiseglobal.resumemgmt.bd.ResumeMgmtBD;
-import com.bitwiseglobal.resumemgmt.entityvo.Skill;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
-import java.math.BigInteger;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import com.amazonaws.services.s3.model.PutObjectResult;
+import com.bitwiseglobal.resumemgmt.S3Wrapper;
+import com.bitwiseglobal.resumemgmt.bd.ResumeMgmtBD;
+import com.bitwiseglobal.resumemgmt.entityvo.Skill;
+
 
 /**
  * @author Chetan Menge
@@ -67,7 +67,7 @@ public class UploadController {
 					String skillId = skill.getSkillId().toString();
 					skillsMap.put(skillId, skill.getName());
 				}
-				logger.debug(methodName + "Skills found= {}" + skillsMap);
+				logger.info(methodName + "Skills found= {}" + skillsMap);
 			} else {
 				logger.debug(methodName + "No skills found");
 			}
@@ -94,28 +94,53 @@ public class UploadController {
 
 				// Save resume in db
 				resumeMgmtBD.addResume(resumeName, skills);
+				logger.info("Resume details saved sucessfully");
 
 				// AWS S3 file upload
-				List<PutObjectResult> list = s3Wrapper.upload(multipartFiles);
-				logger.debug("uploaded file " + list.size());
+				
+				  List<PutObjectResult> list = s3Wrapper.upload(multipartFiles);
+				  logger.info("File uploaded successfully" + list.size());
+				 
 
-				model.addAttribute(methodName + "uploadSuccess", "true");
+				model.addAttribute("uploadSuccess", "true");
 
+			} catch (DataIntegrityViolationException e) {
+				logger.error("Exceptioin occured while saving resume details" + e);
+				handleException("DataIntegrityViolationException", model);
 			} catch (Exception e) {
 				logger.error("Exceptioin occured while saving / uploading resume" + e);
-				model.addAttribute("uploadSuccess", "false");
-				model.addAttribute("errorMsg", "Exceptioin occured while saving / uploading resume");
+				handleException("GenericException", model);
 			}
 
 		} else {
-			logger.debug("Please select atleast one skill and upload file");
-			model.addAttribute("uploadSuccess", "false");
-			model.addAttribute("errorMsg", "Please select atleast one skill and upload file");
+			logger.warn("Please select atleast one skill and upload file");
+			handleException("inputValidationFailed", model);
 		}
 
 		model.addAttribute("skills", getSkills());
 
 		return "bw-upload";
+	}
+
+	private void handleException(String message, Model model) {
+
+		logger.debug(" Exception details" + message);
+
+		model.addAttribute("uploadSuccess", "false");
+
+		switch (message) {
+		case "inputValidationFailed":
+			model.addAttribute("errorMsg", "Please select atleast one skill and upload file");
+			break;
+		case "DataIntegrityViolationException":
+			model.addAttribute("errorMsg", "Resume already exist in system");
+			break;
+		case "GenericException":
+			model.addAttribute("errorMsg", "Exceptioin occured while saving / uploading resume");
+			break;
+
+		}
+
 	}
 
 	/**

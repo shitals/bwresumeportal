@@ -1,13 +1,12 @@
 package com.bitwiseglobal.resumemgmt.bd;
 
 import java.math.BigInteger;
-
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
-
 import java.util.Set;
-import java.util.TreeSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +18,8 @@ import com.bitwiseglobal.resumemgmt.entityvo.User;
 import com.bitwiseglobal.resumemgmt.repository.IResumeRepository;
 import com.bitwiseglobal.resumemgmt.repository.ISkillRepository;
 import com.bitwiseglobal.resumemgmt.repository.IUserRepository;
+
+
 
 @Service
 public class ResumeMgmtBD {
@@ -91,6 +92,8 @@ public class ResumeMgmtBD {
 		resume.setFilePath("abcd");
 		resume.setName("Resume2");
 		resume.setUser(user);
+		Timestamp timestamp = new Timestamp(new Date().getTime());
+		resume.setUploadTimestamp(timestamp);
 		resume.setSkills(skills);
 		resumeRepository.save(resume);
 	}
@@ -113,6 +116,8 @@ public class ResumeMgmtBD {
 		resume.setName(resumeName);
 		resume.setUser(user);		
 		resume.setSkills(skillSet);
+		Timestamp timestamp = new Timestamp(new Date().getTime());
+		resume.setUploadTimestamp(timestamp);
 		
 		resumeRepository.save(resume);
 	}
