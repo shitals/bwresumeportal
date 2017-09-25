@@ -62,10 +62,10 @@ public class S3Wrapper {
 				.filter(multipartFile -> !StringUtils.isEmpty(multipartFile.getOriginalFilename()))
 				.forEach(multipartFile -> {
 					try {
-						System.out.println(" uploading file");
+						
 						putObjectResults.add(upload(multipartFile.getInputStream(), multipartFile.getOriginalFilename()));
 					} catch (IOException e) {
-						e.printStackTrace();
+						new Exception(e);
 					}
 				});
 
