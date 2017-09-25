@@ -29,4 +29,5 @@ public class LoginController {
 		logger.debug(METHOD_NAME+"Started");
 		return "login";
 	}
+	
 }

@@ -81,7 +81,7 @@
                             <a href="index.html"><i class="fa fa-cloud fa-fw"></i> Resume Portal - Home</a>
                         </li>
                         <li>
-                            <a href="bw-upload.html"><i class="fa fa-cloud-upload fa-fw"></i> Upload</a>
+                            <a href="/uploadLanding"><i class="fa fa-cloud-upload fa-fw"></i> Upload</a>
                         </li>
                         <li>
                             <a href="bw-search.html"><i class="fa fa-search fa-fw"></i> Search</a>
@@ -109,7 +109,7 @@
                                 <div class="col-xs-3">
                                     <i class="fa fa-cloud-upload fa-5x"></i>
                                 </div>
-                                <a href="bw-upload.html" style="color: #fff">
+                                <a href="/uploadLanding" style="color: #fff">
                                 <div class="col-xs-9 text-right">
                                     <div class="huge">Upload</div>
                                     <!-- <div>New Comments!</div> -->
