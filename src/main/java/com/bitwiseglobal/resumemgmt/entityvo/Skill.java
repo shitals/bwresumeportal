@@ -21,7 +21,7 @@ public class Skill {
 	BigInteger skillId;
 	
 	String name;
-	
+
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "resume_skill", joinColumns = @JoinColumn(name = "skill_id", referencedColumnName = "skill_id"), inverseJoinColumns = @JoinColumn(name = "resume_id", referencedColumnName = "resume_id"))
 	Set<Resume> resumes;
@@ -48,6 +48,37 @@ public class Skill {
 	
 	public void setResumes(Set<Resume> resumes) {
 		this.resumes = resumes;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((skillId == null) ? 0 : skillId.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Skill other = (Skill) obj;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (skillId == null) {
+			if (other.skillId != null)
+				return false;
+		} else if (!skillId.equals(other.skillId))
+			return false;
+		return true;
 	}
 	
 }
