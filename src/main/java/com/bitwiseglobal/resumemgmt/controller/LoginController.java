@@ -29,13 +29,6 @@ public class LoginController {
 		final String METHOD_NAME="LoginController.login";
 		logger.debug(METHOD_NAME+"Started");
 		
-		if (error != null)
-            model.addAttribute("error", "Your username and password is invalid.");
-		
-
-        if (logout != null)
-            model.addAttribute("message", "You have been logged out successfully.");
-
 		
 		return "login";
 	}
