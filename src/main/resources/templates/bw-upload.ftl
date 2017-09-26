@@ -80,10 +80,10 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="index.html"><i class="fa fa-cloud fa-fw"></i> Resume Portal - Home</a>
+                            <a href="/"><i class="fa fa-cloud fa-fw"></i> Resume Portal - Home</a>
                         </li>
                         <li>
-                            <a href="bw-upload.html"><i class="fa fa-cloud-upload fa-fw"></i> Upload</a>
+                            <a href="/uploadLanding"><i class="fa fa-cloud-upload fa-fw"></i> Upload</a>
                         </li>
                         <li>
                             <a href="bw-search.html"><i class="fa fa-search fa-fw"></i> Search</a>
@@ -107,18 +107,20 @@
             </div>
             <!-- /.row -->
             <div class="row">
-<form class="form-horizontal">
+<form class="form-horizontal" method="POST" action="/upload" enctype="multipart/form-data">
 <fieldset>
 
 <!-- Select Basic -->
 <div class="form-group">
 <label class="col-md-4 control-label" for="selectbasic">Select Skills</label>
+<#list skills?keys as key>
 
   <div class="col-md-4 dropdown cq-dropdown" data-name='statuses'>
-      <button class="btn btn-default btn-sm dropdown-toggle" type="button" id="dropdown1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> Category <span class="caret"></span> </button>
+      <button class="btn btn-default btn-sm dropdown-toggle" name="category" type="button" id="dropdown1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> Category <span class="caret"></span> </button>
       <ul class="dropdown-menu" aria-labelledby="dropdown1">
-            <li><label class="radio-btn"><input type="checkbox" value='Tableau'>Tableau</label></li>
-            <li><label class="radio-btn"><input type="checkbox" value='PHP'>PHP</label></li>
+            <li><label class="radio-btn"><input type="checkbox" value='${key?html}'>${skills[key]?html}</label></li>
+
+<!--            <li><label class="radio-btn"><input type="checkbox" value='PHP'>PHP</label></li>
             <li><label class="radio-btn"><input type="checkbox" value='Kafka'>Kafka</label></li>
             <li><label class="radio-btn"><input type="checkbox" value='Selenium'>Selenium</label></li>
             <li><label class="radio-btn"><input type="checkbox" value='SOA'>SOA</label></li>
@@ -138,19 +140,25 @@
             <li><label class="radio-btn"><input type="checkbox" value='Machine learning'>Machine learning</label></li>
             <li><label class="radio-btn"><input type="checkbox" value='R'>R</label></li>
             <li><label class="radio-btn"><input type="checkbox" value='SharePoint'>SharePoint</label></li>
-        <li class='text-center'>
-          <button type='button' class='btn btn-xs btn-default clear close-dropdown' value='Clear'>Clear</button>
-          <button type='button' class='btn btn-xs btn-default save' value='Save'>Save</button>
-        </li>
+-->         
       </ul>
     </div>
+      </#list>
+<!--     <select multiple="multiple" id="skills" name="skills"  >
+	<option value="" selected="selected">Category</option>
+    <#list skills?keys as key>
+    
+    <option value="${key?html}" >${skills[key]?html}</option>
+    
+    </#list>
+</select> -->
 </div>
 
 <!-- File Button --> 
 <div class="form-group">
   <label class="col-md-4 control-label" for="filebutton">Upload Resume</label>
   <div class="col-md-4">
-    <input id="filebutton" name="filebutton" class="input-file" type="file">
+    <input id="file" name="file" class="input-file" type="file">
   </div>
 </div>
 
@@ -158,12 +166,30 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="singlebutton"></label>
   <div class="col-md-4">
-    <button id="singlebutton" name="singlebutton" class="btn btn-primary">Save</button>
+    
+    <input id="singlebutton" name="singlebutton" class="btn btn-primary" type="submit" value="Save" />
   </div>
 </div>
 
+
+
+<#if uploadSuccess?? && uploadSuccess="true">
+ <label class="col-md-4 control-label" for="selectbasic"> File has been uploaded successfully </label>
+<#elseif uploadSuccess?? && uploadSuccess="false">
+	 <font color="red"> <label  class="col-md-4 control-label" for="selectbasic"> ${errorMsg} </label> </font>
+</#if>
+
+
+
+
+
+
+ 
+
 </fieldset>
 </form>
+
+ 
 
             </div>
         </div>
@@ -190,7 +216,13 @@
     <script src="js/sb-admin-2.js"></script>
 
     <!-- Dropdown Checkboxes -->
-    <script src="js/dropdownCheckboxes.min.js"></script>
+    <script src="js/dropdownCheckboxes.js"></script>
+    
+ <script>
+    $(function(){
+      $('.cq-dropdown').dropdownCheckboxes();
+    });
+    </script> 
 
 </body>
 
