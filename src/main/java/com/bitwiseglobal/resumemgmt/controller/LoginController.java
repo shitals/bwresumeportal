@@ -25,18 +25,23 @@ public class LoginController {
 	ResumeMgmtBD resumeMgmtBD;
 	
 	@RequestMapping(value="/login",method=RequestMethod.GET)
-	public String login(Model model, String error, String logout) {
+	public String login(Model model, String error) {
 		final String METHOD_NAME="LoginController.login";
 		logger.debug(METHOD_NAME+"Started");
 		
-		
+		if (error != null) {
+            model.addAttribute("errormsg", "Your username and password is invalid.");
+		}
+
 		return "login";
 	}
 	
 	@RequestMapping(value="/logout",method=RequestMethod.GET)
-	public String logout() {
+	public String logout(Model model) {
 		final String METHOD_NAME="LoginController.logout";
 		logger.debug(METHOD_NAME+"Started");
+		model.addAttribute("message", "You have been logged out successfully.");
+		
 		return "login";
 	}
 	

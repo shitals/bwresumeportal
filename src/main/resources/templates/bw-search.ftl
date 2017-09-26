@@ -78,7 +78,11 @@
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li>
+                        	<form action="/logout" method="post">
+					          	<input type="submit" class="fa fa-sign-out fa-fw" value="LogOut" /> 
+					          	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+							</form>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
