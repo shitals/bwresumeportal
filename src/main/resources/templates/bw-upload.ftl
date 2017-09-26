@@ -111,10 +111,10 @@
 <fieldset>
 
 <!-- Select Basic -->
-<div class="form-group">
+<!-- <div class="form-group">
     <label class="col-md-4 control-label" for="selectbasic">Candidate Name</label>
 <div class="col-md-4"><input type="text" name="candidateName" value="" style="width: 150px;"></div>
-</div>
+</div> -->
 <div class="form-group">
 <label class="col-md-4 control-label" for="selectbasic">Select Skills</label>
 
@@ -160,7 +160,7 @@
 
 
 
-
+<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
  
 
 </fieldset>
