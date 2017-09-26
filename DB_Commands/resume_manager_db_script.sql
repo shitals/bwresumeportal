@@ -74,6 +74,8 @@ INSERT INTO skill(name) VALUES ('SharePoint');
 #INSERT INTO user(user_id,first_name,middle_name,last_name) VALUES ('dummyid','dummyfirst','dummymiddle','dummylast');
 
 
+alter table resume_portal_db.resume add unique(name);
+INSERT INTO user(user_id,first_name,middle_name,last_name) VALUES ('1','bitwise','bitwise','bitwise');
 
 CREATE USER 'bwuser'@'localhost' IDENTIFIED BY 'password';
 GRANT ALL ON resume_portal_db.* TO 'bwuser'@'localhost';

@@ -158,7 +158,8 @@ public class UploadController {
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String list(Model model) throws IOException {
 		logger.debug("List of all uploaded files" + s3Wrapper.list());
-		return "upload";
+		model.addAttribute("files", s3Wrapper.list());
+		return "fileListing";
 	}
 
 }
