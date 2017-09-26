@@ -25,7 +25,7 @@
 
     <!-- Custom Fonts -->
     <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
+    
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -93,7 +93,7 @@
                             <a href="/uploadLanding"><i class="fa fa-cloud-upload fa-fw"></i> Upload</a>
                         </li>
                         <li>
-                            <a href="bw-search.html"><i class="fa fa-search fa-fw"></i> Search</a>
+                            <a href="/searchLanding"><i class="fa fa-search fa-fw"></i> Search</a>
                         </li>
                     </ul>
                 </div>
@@ -135,7 +135,7 @@
                                 <div class="col-xs-3">
                                     <i class="fa fa-search fa-5x"></i>
                                 </div>
-                                <a href="bw-search.html" style="color: #fff">
+                                <a href="/searchLanding" style="color: #fff">
                                 <div class="col-xs-9 text-right">
                                     <div class="huge">Search</div>
                                 </div>

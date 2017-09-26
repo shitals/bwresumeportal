@@ -32,6 +32,7 @@ public class LoginController {
 		if (error != null) {
             model.addAttribute("errormsg", "Your username and password is invalid.");
 		}
+
 		return "login";
 	}
 	
