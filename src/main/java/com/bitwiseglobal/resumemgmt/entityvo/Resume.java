@@ -11,9 +11,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -36,7 +38,8 @@ public class Resume {
     @JoinColumn(name = "user_key")
 	User user;
 	
-	@ManyToMany(mappedBy = "resumes")
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "resume_skill", joinColumns = @JoinColumn(name = "resume_id", referencedColumnName = "resume_id"), inverseJoinColumns = @JoinColumn(name = "skill_id", referencedColumnName = "skill_id"))
 	Set<Skill> skills;
 	
 	public BigInteger getResumeID() {
