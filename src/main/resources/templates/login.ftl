@@ -46,8 +46,7 @@
                         <h3 class="panel-title">Please Sign In</h3>
                     </div>
                     <div class="panel-body">
-                    	${errorMsg}
-                    	${message}
+                    	
                         <form action="/login" method="post">
                             <fieldset>
                                 <div class="form-group">
