@@ -86,7 +86,7 @@
                             <a href="/uploadLanding"><i class="fa fa-cloud-upload fa-fw"></i> Upload</a>
                         </li>
                         <li>
-                            <a href="bw-search.html"><i class="fa fa-search fa-fw"></i> Search</a>
+                            <a href="/searchLanding"><i class="fa fa-search fa-fw"></i> Search</a>
                         </li>
                     </ul>
                 </div>
@@ -112,11 +112,15 @@
 
 <!-- Select Basic -->
 <div class="form-group">
+    <label class="col-md-4 control-label" for="selectbasic">Candidate Name</label>
+<div class="col-md-4"><input type="text" name="candidateName" value="" style="width: 150px;"></div>
+</div>
+<div class="form-group">
 <label class="col-md-4 control-label" for="selectbasic">Select Skills</label>
 
 
   <div class="col-md-4 dropdown cq-dropdown" data-name='skills'>
-      <button class="btn btn-default btn-sm dropdown-toggle" name="category" type="button" id="dropdown1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> Category <span class="caret"></span> </button>
+      <button class="btn btn-default btn-sm dropdown-toggle" name="category" type="button" id="dropdown1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width: 150px;"> Skills <span class="caret"></span> </button>
       <ul class="dropdown-menu" aria-labelledby="dropdown1">
  <#list skills?keys as key>
             <li><label class="radio-btn"><input type="checkbox" value='${key?html}'>${skills[key]?html}</label></li>
