@@ -113,12 +113,14 @@
 <!-- Select Basic -->
 <div class="form-group">
 <label class="col-md-4 control-label" for="selectbasic">Select Skills</label>
-<!--
+<#list skills?keys as key>
+
   <div class="col-md-4 dropdown cq-dropdown" data-name='statuses'>
       <button class="btn btn-default btn-sm dropdown-toggle" name="category" type="button" id="dropdown1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> Category <span class="caret"></span> </button>
       <ul class="dropdown-menu" aria-labelledby="dropdown1">
-            <li><label class="radio-btn"><input type="checkbox" value='Tableau'>Tableau</label></li>
-            <li><label class="radio-btn"><input type="checkbox" value='PHP'>PHP</label></li>
+            <li><label class="radio-btn"><input type="checkbox" value='${key?html}'>${skills[key]?html}</label></li>
+
+<!--            <li><label class="radio-btn"><input type="checkbox" value='PHP'>PHP</label></li>
             <li><label class="radio-btn"><input type="checkbox" value='Kafka'>Kafka</label></li>
             <li><label class="radio-btn"><input type="checkbox" value='Selenium'>Selenium</label></li>
             <li><label class="radio-btn"><input type="checkbox" value='SOA'>SOA</label></li>
@@ -138,18 +140,18 @@
             <li><label class="radio-btn"><input type="checkbox" value='Machine learning'>Machine learning</label></li>
             <li><label class="radio-btn"><input type="checkbox" value='R'>R</label></li>
             <li><label class="radio-btn"><input type="checkbox" value='SharePoint'>SharePoint</label></li>
-        
+-->         
       </ul>
     </div>
--->    
-    <select multiple="multiple" id="skills" name="skills"  >
+      </#list>
+<!--     <select multiple="multiple" id="skills" name="skills"  >
 	<option value="" selected="selected">Category</option>
     <#list skills?keys as key>
     
     <option value="${key?html}" >${skills[key]?html}</option>
     
     </#list>
-</select>
+</select> -->
 </div>
 
 <!-- File Button --> 
@@ -214,9 +216,13 @@
     <script src="js/sb-admin-2.js"></script>
 
     <!-- Dropdown Checkboxes -->
-    <script src="js/dropdownCheckboxes.min.js"></script>
+    <script src="js/dropdownCheckboxes.js"></script>
     
- 
+ <script>
+    $(function(){
+      $('.cq-dropdown').dropdownCheckboxes();
+    });
+    </script> 
 
 </body>
 
