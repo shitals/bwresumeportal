@@ -32,7 +32,21 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <style type="text/css">
+        /* CSS REQUIRED */
+        .state-icon {
+            left: -5px;
+        }
+        .list-group-item-primary {
+            color: rgb(255, 255, 255);
+            background-color: rgb(66, 139, 202);
+        }
 
+        /* DEMO ONLY - REMOVES UNWANTED MARGIN */
+        .well .list-group {
+            margin-bottom: 0px;
+        }
+    </style>
 </head>
 
 <body>
@@ -77,13 +91,13 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="index.html"><i class="fa fa-cloud fa-fw"></i> Resume Portal - Home</a>
+                            <a href="/"><i class="fa fa-cloud fa-fw"></i> Resume Portal - Home</a>
                         </li>
                         <li>
-                            <a href="bw-upload.html"><i class="fa fa-cloud-upload fa-fw"></i> Upload</a>
+                            <a href="/uploadLanding"><i class="fa fa-cloud-upload fa-fw"></i> Upload</a>
                         </li>
                         <li>
-                            <a href="bw-search.html"><i class="fa fa-search fa-fw"></i> Search</a>
+                            <a href="/searchLanding"><i class="fa fa-search fa-fw"></i> Search</a>
                         </li>
                     </ul>
                 </div>
@@ -92,7 +106,7 @@
             <!-- /.navbar-static-side -->
         </nav>
 
-        <div id="page-wrapper">
+ <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
                     <h1 class="page-header">
@@ -104,9 +118,61 @@
             </div>
             <!-- /.row -->
             <div class="row">
-                
+                <div class="col-lg-2">
+                    <form role="form">
+                         <div class="form-group">
+                            <label>Select Skills</label>
+                            <div class="well" style="max-height: 400px; overflow: auto;">
+                                <ul id="skillList" class="list-group checked-list-box">
+                                     <#list skills?keys as key>
+                                        <li class="list-group-item" skill-id="${key?html}">${skills[key]?html}</li>
+                                     </#list>
+                                </ul>
+                            </div>
+                        </div>
+                        <input type="hidden" id="selectedSkills"/>
 
+                      <!--   <button class="btn btn-primary col-xs-12" id="get-checked-data">Get Checked Data</button> -->
+                        <button type="submit" class="btn btn-default">Search</button>
+                        <button type="reset" class="btn btn-default">Reset</button>
+                    </form>
 
+                </div>
+
+                <div class="col-lg-10">
+                    <div class="panel-body">
+                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                <thead>
+                                    <tr>
+                                        <th class="col-lg-2">Name (Linked Resume)</th>
+                                        <th class="col-lg-5">Skills</th>
+                                        <th class="col-lg-1">Upload Date</th>
+                                        <th class="col-lg-1">Upload By</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="odd gradeX">
+                                        <td><a href="#resumefile">[Candidate1 Name]</a></td>
+                                        <td>[Skill1, Skill2, Skill3]</td>
+                                        <td>09/24/2017</td>
+                                        <td>[User ID]</td>
+                                    </tr>
+                                    <tr class="even gradeC">
+                                        <td><a href="#resumefile">[Candidate1 Name]</a></td>
+                                        <td>[Skill1, Skill2, Skill3]</td>
+                                        <td>09/24/2017</td>
+                                        <td>[User ID]</td>
+                                    </tr>
+                                    <tr class="odd gradeA">
+                                        <td><a href="#resumefile">[Candidate1 Name]</a></td>
+                                        <td>[Skill1, Skill2, Skill3]</td>
+                                        <td>09/24/2017</td>
+                                        <td>[User ID]</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                </div>
             </div>
         </div>
         <!-- /#page-wrapper -->
@@ -130,7 +196,97 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="js/sb-admin-2.js"></script>
+<script type="text/javascript">
+        
+        $(function () {
+    $('.list-group.checked-list-box .list-group-item').each(function () {
+        
+        // Settings
+        var $widget = $(this),
+            $checkbox = $('<input type="checkbox" class="hidden" />'),
+            color = ($widget.data('color') ? $widget.data('color') : "primary"),
+            style = ($widget.data('style') == "button" ? "btn-" : "list-group-item-"),
+            settings = {
+                on: {
+                    icon: 'glyphicon glyphicon-check'
+                },
+                off: {
+                    icon: 'glyphicon glyphicon-unchecked'
+                }
+            };
+            
+        $widget.css('cursor', 'pointer')
+        $widget.append($checkbox);
 
+        // Event Handlers
+        $widget.on('click', function () {
+            $checkbox.prop('checked', !$checkbox.is(':checked'));
+            $checkbox.triggerHandler('change');
+            updateDisplay();
+        });
+        $checkbox.on('change', function () {
+            updateDisplay();
+        });
+          
+
+        // Actions
+        function updateDisplay() {
+            var isChecked = $checkbox.is(':checked');
+
+            // Set the button's state
+            $widget.data('state', (isChecked) ? "on" : "off");
+
+            // Set the button's icon
+            $widget.find('.state-icon')
+                .removeClass()
+                .addClass('state-icon ' + settings[$widget.data('state')].icon);
+
+            // Update the button's color
+            if (isChecked) {
+                $widget.addClass(style + color + ' active');
+            } else {
+                $widget.removeClass(style + color + ' active');
+            }
+                var selectedSkills = "";
+
+                $("#skillList li.active").each(function(idx, li) {
+                        if(selectedSkills==""){
+                          selectedSkills = $(li).attr("skill-id");
+                        }else{
+                          selectedSkills = selectedSkills+"," + $(li).attr("skill-id");
+                        }
+                });
+                $("#selectedSkills").val(selectedSkills);
+        }
+
+        // Initialization
+        function init() {
+            
+            if ($widget.data('checked') == true) {
+                $checkbox.prop('checked', !$checkbox.is(':checked'));
+            }
+            
+            updateDisplay();
+
+            // Inject the icon if applicable
+            if ($widget.find('.state-icon').length == 0) {
+                $widget.prepend('<span class="state-icon ' + settings[$widget.data('state')].icon + '"></span>');
+            }
+        }
+        init();
+    });
+    
+    $('#get-checked-data').on('click', function(event) {
+        event.preventDefault(); 
+        var checkedItems = {}, counter = 0;
+        $("#skillList li.active").each(function(idx, li) {
+            checkedItems[counter] = $(li).text();
+            counter++;
+        });
+        $('#display-json').html(JSON.stringify(checkedItems, null, '\t'));
+    });
+});
+    </script>
 </body>
 
 </html>
