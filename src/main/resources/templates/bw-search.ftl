@@ -63,7 +63,7 @@
                     <span class="icon-bar"></span>
                 </button>
 <!--                 <img src="../images/bwlogo1.png"/>
- -->                <a class="navbar-brand" href="index.html">Bitwise - Resume Portal v0.1</a>
+ -->                <a class="navbar-brand" href="/rmLanding">Bitwise - Resume Portal v0.1</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -101,7 +101,7 @@
                             <a href="/uploadLanding"><i class="fa fa-cloud-upload fa-fw"></i> Upload</a>
                         </li>
                         <li>
-                            <a href="/searchLanding"><i class="fa fa-search fa-fw"></i> Search</a>
+                            <a href="/search-resume"><i class="fa fa-search fa-fw"></i> Search</a>
                         </li>
                     </ul>
                 </div>
@@ -123,18 +123,20 @@
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-2">
-                    <form role="form">
+                    <form action="/search-resume"  role="form">
                          <div class="form-group">
                             <label>Select Skills</label>
                             <div class="well" style="max-height: 400px; overflow: auto;">
                                 <ul id="skillList" class="list-group checked-list-box">
-                                     <#list skills?keys as key>
-                                        <li class="list-group-item" skill-id="${key?html}">${skills[key]?html}</li>
-                                     </#list>
+                                		<#if skills??>
+	                                     <#list skills as skill>
+	                                        <li class="list-group-item" skill-id="${skill.skillId?html}">${skill.name?html}</li>
+	                                     </#list>
+	                                     </#if>
                                 </ul>
                             </div>
                         </div>
-                        <input type="hidden" id="selectedSkills"/>
+                        <input type="hidden" name="selectedSkills" id="selectedSkills"/>
 
                       <!--   <button class="btn btn-primary col-xs-12" id="get-checked-data">Get Checked Data</button> -->
                         <button type="submit" class="btn btn-default">Search</button>
@@ -145,36 +147,28 @@
 
                 <div class="col-lg-10">
                     <div class="panel-body">
+                    		<#if (resumes?? && resumes?size >= 1) >
                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
                                     <tr>
                                         <th class="col-lg-2">Name (Linked Resume)</th>
-                                        <th class="col-lg-5">Skills</th>
-                                        <th class="col-lg-1">Upload Date</th>
+                                        <th class="col-lg-4">Skills</th>
+                                        <th class="col-lg-2">Upload Date</th>
                                         <th class="col-lg-1">Upload By</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="odd gradeX">
-                                        <td><a href="#resumefile">[Candidate1 Name]</a></td>
-                                        <td>[Skill1, Skill2, Skill3]</td>
-                                        <td>09/24/2017</td>
-                                        <td>[User ID]</td>
+                                <#list resumes as resume>
+                                    <tr class="gradeA">
+                                        <td><a href="/download?key=${resume.resumeName}">${resume.resumeName}</a></td>
+                                        <td>${resume.resumeSkills}</td>
+                                        <td>${resume.uploadedTime}</td>
+                                        <td>${resume.uploadedBy}</td>
                                     </tr>
-                                    <tr class="even gradeC">
-                                        <td><a href="#resumefile">[Candidate1 Name]</a></td>
-                                        <td>[Skill1, Skill2, Skill3]</td>
-                                        <td>09/24/2017</td>
-                                        <td>[User ID]</td>
-                                    </tr>
-                                    <tr class="odd gradeA">
-                                        <td><a href="#resumefile">[Candidate1 Name]</a></td>
-                                        <td>[Skill1, Skill2, Skill3]</td>
-                                        <td>09/24/2017</td>
-                                        <td>[User ID]</td>
-                                    </tr>
+                                </#list>    
                                 </tbody>
                             </table>
+                            </#if>
                         </div>
                 </div>
             </div>
