@@ -53,6 +53,9 @@
             </div>
             <!-- /.navbar-header -->
 
+
+            
+			
             <ul class="nav navbar-top-links navbar-right">
                 <!-- /.dropdown -->
                 <li class="dropdown">
@@ -65,7 +68,13 @@
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li>
+                        	<form action="/logout" method="post">
+					          	<input type="submit" class="fa fa-sign-out fa-fw" value="LogOut" /> 
+					          	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+							</form>
+                        </li>
+                        	
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
