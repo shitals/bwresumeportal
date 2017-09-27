@@ -67,7 +67,11 @@
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li>
+                        	<form action="/logout" method="post">
+					          	<input type="submit" class="fa fa-sign-out fa-fw" value="LogOut" /> 
+					          	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+							</form>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -86,7 +90,7 @@
                             <a href="/uploadLanding"><i class="fa fa-cloud-upload fa-fw"></i> Upload</a>
                         </li>
                         <li>
-                            <a href="bw-search.html"><i class="fa fa-search fa-fw"></i> Search</a>
+                            <a href="/searchLanding"><i class="fa fa-search fa-fw"></i> Search</a>
                         </li>
                     </ul>
                 </div>
@@ -112,46 +116,23 @@
 
 <!-- Select Basic -->
 <div class="form-group">
+    <label class="col-md-4 control-label" for="selectbasic">Candidate Name</label>
+<div class="col-md-4"><input type="text" name="candidateName" value="" style="width: 150px;"></div>
+</div>
+<div class="form-group">
 <label class="col-md-4 control-label" for="selectbasic">Select Skills</label>
-<#list skills?keys as key>
 
-  <div class="col-md-4 dropdown cq-dropdown" data-name='statuses'>
-      <button class="btn btn-default btn-sm dropdown-toggle" name="category" type="button" id="dropdown1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> Category <span class="caret"></span> </button>
+
+  <div class="col-md-4 dropdown cq-dropdown" data-name='skills'>
+      <button class="btn btn-default btn-sm dropdown-toggle" name="category" type="button" id="dropdown1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width: 150px;"> Skills <span class="caret"></span> </button>
       <ul class="dropdown-menu" aria-labelledby="dropdown1">
+ <#list skills?keys as key>
             <li><label class="radio-btn"><input type="checkbox" value='${key?html}'>${skills[key]?html}</label></li>
-
-<!--            <li><label class="radio-btn"><input type="checkbox" value='PHP'>PHP</label></li>
-            <li><label class="radio-btn"><input type="checkbox" value='Kafka'>Kafka</label></li>
-            <li><label class="radio-btn"><input type="checkbox" value='Selenium'>Selenium</label></li>
-            <li><label class="radio-btn"><input type="checkbox" value='SOA'>SOA</label></li>
-            <li><label class="radio-btn"><input type="checkbox" value='Jmeter'>Jmeter</label></li>
-            <li><label class="radio-btn"><input type="checkbox" value='Devtest'>Devtest</label></li>
-            <li><label class="radio-btn"><input type="checkbox" value='ETL'>ETL</label></li>
-            <li><label class="radio-btn"><input type="checkbox" value='Docker'>Docker</label></li>
-            <li><label class="radio-btn"><input type="checkbox" value='Gitlab'>Gitlab</label></li>
-            <li><label class="radio-btn"><input type="checkbox" value='.NET'>.NET</label></li>
-            <li><label class="radio-btn"><input type="checkbox" value='BA'>BA</label></li>
-            <li><label class="radio-btn"><input type="checkbox" value='Data Warehousing'>Data Warehousing</label></li>
-            <li><label class="radio-btn"><input type="checkbox" value='QA Automation'>QA Automation</label></li>
-            <li><label class="radio-btn"><input type="checkbox" value='GCF'>GCF</label></li>
-            <li><label class="radio-btn"><input type="checkbox" value='Cloud Foundry'>Cloud Foundry</label></li>
-            <li><label class="radio-btn"><input type="checkbox" value='PCF'>PCF</label></li>
-            <li><label class="radio-btn"><input type="checkbox" value='Java Microservices'>Java Microservices</label></li>
-            <li><label class="radio-btn"><input type="checkbox" value='Machine learning'>Machine learning</label></li>
-            <li><label class="radio-btn"><input type="checkbox" value='R'>R</label></li>
-            <li><label class="radio-btn"><input type="checkbox" value='SharePoint'>SharePoint</label></li>
--->         
+ </#list>
+        
       </ul>
     </div>
-      </#list>
-<!--     <select multiple="multiple" id="skills" name="skills"  >
-	<option value="" selected="selected">Category</option>
-    <#list skills?keys as key>
-    
-    <option value="${key?html}" >${skills[key]?html}</option>
-    
-    </#list>
-</select> -->
+
 </div>
 
 <!-- File Button --> 
