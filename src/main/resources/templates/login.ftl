@@ -45,16 +45,17 @@
                     <div class="panel-heading">
                         <h3 class="panel-title">Please Sign In</h3>
                     </div>
-                    <div class="form-group">
-	                    	<#if errormsg??>
-	                    		<font color="red"> <label  class="col-md-4 control-label" for="selectbasic"> ${errormsg} </label> </font>
+                           	<#if errormsg??>
+                                <div class="alert alert-danger" role="alert">
+                                  ${errormsg}
+                                </div>
 	                    	</#if>
 	                    	<#if message??>
-	                    		<font color="red"> <label  class="col-md-4 control-label" for="selectbasic"> ${message} </label> </font>
+                                <div class="alert alert-warning" role="alert">
+                                  ${message}
+                                </div>
 	                    	</#if>
-                    	
-                	</div>
-                    <div class="panel-body">
+                  	<div class="panel-body">
                         <form action="/login" method="post">
                             <fieldset>
                                 <div class="form-group">

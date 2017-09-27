@@ -62,16 +62,16 @@
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        <!-- <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
                         </li>
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
-                        <li class="divider"></li>
+                        <li class="divider"></li> -->
                         <li>
-                        	<form action="/logout" method="post">
-					          	<input type="submit" class="fa fa-sign-out fa-fw" value="LogOut" /> 
-					          	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-							</form>
+                        	<a href="#" id="logout-link"><i class="fa fa-gear fa-sign-out fa-fw"></i> Logout</a>
+                            <form action="/logout" style="display:hidden;" id="bwlogoutform" method="post">
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                            </form>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -198,6 +198,8 @@
 
     <!-- Dropdown Checkboxes -->
     <script src="js/dropdownCheckboxes.js"></script>
+        <script src="js/bw-portal-1.js"></script>
+
     
  <script>
     $(function(){
