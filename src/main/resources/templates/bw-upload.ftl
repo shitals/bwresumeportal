@@ -90,7 +90,7 @@
                             <a href="/uploadLanding"><i class="fa fa-cloud-upload fa-fw"></i> Upload</a>
                         </li>
                         <li>
-                            <a href="/searchLanding"><i class="fa fa-search fa-fw"></i> Search</a>
+                            <a href="/search-resume"><i class="fa fa-search fa-fw"></i> Search</a>
                         </li>
                     </ul>
                 </div>

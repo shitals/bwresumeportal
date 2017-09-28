@@ -1,6 +1,7 @@
 package com.bitwiseglobal.resumemgmt.entityvo;
 
 import java.math.BigInteger;
+import java.util.Comparator;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -82,3 +83,4 @@ public class Skill {
 	}
 	
 }
+

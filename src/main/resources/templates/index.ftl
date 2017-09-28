@@ -93,7 +93,7 @@
                             <a href="/uploadLanding"><i class="fa fa-cloud-upload fa-fw"></i> Upload</a>
                         </li>
                         <li>
-                            <a href="/searchLanding"><i class="fa fa-search fa-fw"></i> Search</a>
+                            <a href="/search-resume"><i class="fa fa-search fa-fw"></i> Search</a>
                         </li>
                     </ul>
                 </div>
@@ -135,7 +135,7 @@
                                 <div class="col-xs-3">
                                     <i class="fa fa-search fa-5x"></i>
                                 </div>
-                                <a href="/searchLanding" style="color: #fff">
+                                <a href="/search-resume" style="color: #fff">
                                 <div class="col-xs-9 text-right">
                                     <div class="huge">Search</div>
                                 </div>
