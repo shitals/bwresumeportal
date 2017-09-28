@@ -90,7 +90,7 @@
                             <a href="/uploadLanding"><i class="fa fa-cloud-upload fa-fw"></i> Upload</a>
                         </li>
                         <li>
-                            <a href="/searchLanding"><i class="fa fa-search fa-fw"></i> Search</a>
+                            <a href="/search-resume"><i class="fa fa-search fa-fw"></i> Search</a>
                         </li>
                     </ul>
                 </div>
@@ -115,10 +115,10 @@
 <fieldset>
 
 <!-- Select Basic -->
-<div class="form-group">
+<!-- <div class="form-group">
     <label class="col-md-4 control-label" for="selectbasic">Candidate Name</label>
 <div class="col-md-4"><input type="text" name="candidateName" value="" style="width: 150px;"></div>
-</div>
+</div> -->
 <div class="form-group">
 <label class="col-md-4 control-label" for="selectbasic">Select Skills</label>
 
@@ -164,7 +164,7 @@
 
 
 
-
+<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
  
 
 </fieldset>

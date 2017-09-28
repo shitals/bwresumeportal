@@ -20,10 +20,9 @@ import com.bitwiseglobal.resumemgmt.bd.ResumeMgmtBD;
 public class LoginController {
 
 	private static final Logger logger=Logger.getLogger(LoginController.class);
-	
-	@Autowired
-	ResumeMgmtBD resumeMgmtBD;
-	
+
+
+
 	@RequestMapping(value="/login",method=RequestMethod.GET)
 	public String login(Model model, String error) {
 		final String METHOD_NAME="LoginController.login";
@@ -44,5 +43,5 @@ public class LoginController {
 		
 		return "login";
 	}
-	
+
 }
