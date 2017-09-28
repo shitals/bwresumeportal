@@ -22,40 +22,22 @@ import com.bitwiseglobal.resumemgmt.bd.ResumeMgmtBD;
  */
 @Controller
 public class LandingController {
-	
-	
-	
+
+
+
 	private static final Logger logger=LoggerFactory.getLogger(LandingController.class);
-	
+
 	@Autowired
 	ResumeMgmtBD resumeMgmtBD;
-	
+
 	@RequestMapping(value= {"/rmLanding","/"},method=RequestMethod.GET)
 	public String landing(Model model) {
 		final String METHO_DNAME="RMLandingController.landing";
 		logger.debug(METHO_DNAME+"Started");		
-		
+
 		model.addAttribute("name","[Bitwise Demo]");
-		
+
 		return "index";	
 	}
 
-	@RequestMapping(value="/addSkill",method=RequestMethod.GET)
-	public String addSkill() {
-		resumeMgmtBD.addSkill();
-		return "temp";	
-	}
-	
-	@RequestMapping(value="/addResume",method=RequestMethod.GET)
-	public String addResume() {
-		resumeMgmtBD.addResume();
-		return "temp";	
-	}
-	
-	@RequestMapping(value="/addUser",method=RequestMethod.GET)
-	public String addUser() {
-		resumeMgmtBD.addUser();
-		return "temp";	
-	}
-	
 }

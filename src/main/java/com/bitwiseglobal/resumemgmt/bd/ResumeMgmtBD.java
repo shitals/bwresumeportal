@@ -3,10 +3,12 @@ package com.bitwiseglobal.resumemgmt.bd;
 import java.math.BigInteger;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -127,37 +129,36 @@ public class ResumeMgmtBD {
 		Set<Skill> skillSet = new HashSet<>();
 		for(String skillStr : commaSeperatedSkillsStr.split(",")) {
 			skillSet.add(skillRepository.findOne(new BigInteger(skillStr)));
-
 		}
 		return getResumeBySkills(skillSet);
 	}
 
 	public Set<ResumeDisplayDTO> getResumeBySkills(Set<Skill> skills) {
-		Set<ResumeDisplayDTO> resumeDisplayDTOSet = new HashSet<>();
-		for (Resume resume : resumeRepository.findAll()) {
-			if (containsAtleastOne(resume.getSkills(), skills))
+		Set<ResumeDisplayDTO> resumeDisplayDTOSet = new TreeSet<>();
+		for (Skill skill : skills) {
+			for (Resume resume : skill.getResumes()) {
 				resumeDisplayDTOSet.add(convertToPresentationDTO(resume));
+			}
 		}
 		return resumeDisplayDTOSet;
 	}
 
 	private ResumeDisplayDTO convertToPresentationDTO(Resume resume) {
 		ResumeDisplayDTO resumeDisplayDTO = new ResumeDisplayDTO();
+		resumeDisplayDTO.setResumeId(resume.getResumeID().intValue());
 		resumeDisplayDTO.setResumeName(resume.getName());
 		resumeDisplayDTO.setUploadedBy(resume.getUser().getUserId());
 		resumeDisplayDTO.setUploadLink(resume.getFilePath());
 		resumeDisplayDTO.setUploadedTime(resume.getUploadTimestamp().toString());
+		resumeDisplayDTO.setResumeSkills(convertSetToCommaSeperatedString(resume.getSkills()));
 		return resumeDisplayDTO;
 	}
 
-	private boolean containsAtleastOne(Set<Skill> sourceSkills, Set<Skill> targetSkills) {
-		boolean returnValue = false;
-		for (Skill skill : sourceSkills) {
-			if (targetSkills.contains(skill)) {
-				returnValue = true;
-				break;
-			}	
+	private String convertSetToCommaSeperatedString(Set<Skill> skills) {
+		StringBuilder returnValue = new StringBuilder("");
+		for (Skill skill : skills) {
+			returnValue.append(skill.getName()).append(",");	
 		}
-		return returnValue;
+		return returnValue.toString().substring(0, returnValue.length()-1);
 	}
 }
