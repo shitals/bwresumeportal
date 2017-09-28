@@ -17,6 +17,12 @@
     <!-- MetisMenu CSS -->
     <link href="css/metisMenu.min.css" rel="stylesheet">
 
+    <!-- DataTables CSS -->
+    <link href="css/dataTables.bootstrap.css" rel="stylesheet">
+
+    <!-- DataTables Responsive CSS -->
+    <link href="css/dataTables.responsive.css" rel="stylesheet">
+
     <!-- Custom CSS -->
     <link href="css/sb-admin-2.css" rel="stylesheet">
 
@@ -148,7 +154,7 @@
                 <div class="col-lg-10">
                     <div class="panel-body">
                     		<#if (resumes?? && resumes?size >= 1) >
-                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                            <table width="100%" class="table table-striped table-bordered table-hover" id="searchResult-table">
                                 <thead>
                                     <tr>
                                         <th class="col-lg-2">Name (Linked Resume)</th>
@@ -187,10 +193,10 @@
     <!-- Metis Menu Plugin JavaScript -->
     <script src="js/metisMenu.min.js"></script>
 
-    <!-- Morris Charts JavaScript -->
-<!--     <script src="../vendor/raphael/raphael.min.js"></script>
-    <script src="../vendor/morrisjs/morris.min.js"></script>
-    <script src="../data/morris-data.js"></script> -->
+    <!-- DataTables JavaScript -->
+    <script src="js/jquery.dataTables.min.js"></script>
+    <script src="js/dataTables.bootstrap.min.js"></script>
+    <script src="js/dataTables.responsive.js"></script>
 
     <!-- Custom Theme JavaScript -->
     <script src="js/sb-admin-2.js"></script>
@@ -285,6 +291,12 @@
         $('#display-json').html(JSON.stringify(checkedItems, null, '\t'));
     });
 });
+
+    $(document).ready(function() {
+        $('#searchResult-table').DataTable({
+            responsive: true
+        });
+    });
     </script>
 </body>
 
