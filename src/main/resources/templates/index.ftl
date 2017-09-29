@@ -49,7 +49,7 @@
                     <span class="icon-bar"></span>
                 </button>
 <!--                 <img src="../images/bwlogo1.png"/>
- -->                <a class="navbar-brand" href="index.html">Bitwise - Resume Portal v0.1</a>
+ -->                <a class="navbar-brand" href="/">Bitwise - Resume Portal v0.1</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -87,7 +87,7 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="index.html"><i class="fa fa-cloud fa-fw"></i> Resume Portal - Home</a>
+                            <a href="/"><i class="fa fa-cloud fa-fw"></i> Resume Portal - Home</a>
                         </li>
                         <li>
                             <a href="/uploadLanding"><i class="fa fa-cloud-upload fa-fw"></i> Upload</a>
