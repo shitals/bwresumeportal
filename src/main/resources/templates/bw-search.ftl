@@ -110,6 +110,10 @@
                             <a href="/search-resume"><i class="fa fa-search fa-fw"></i> Search</a>
                         </li>
                     </ul>
+                    
+<#if downloadSuccess?? && downloadSuccess="false">
+	 <font color="red"> <label  class="col-md-4 control-label" for="selectbasic"> ${errorMsg} </label> </font>
+</#if>
                 </div>
                 <!-- /.sidebar-collapse -->
             </div>
@@ -166,7 +170,7 @@
                                 <tbody>
                                 <#list resumes as resume>
                                     <tr class="gradeA">
-                                        <td><a href="/download?key=${resume.resumeName}">${resume.resumeName}</a></td>
+                                        <td><a href="/download?key=${resume.resumeId}&fileName=${resume.resumeName}">${resume.resumeName}</a></td>
                                         <td>${resume.resumeSkills}</td>
                                         <td>${resume.uploadedTime}</td>
                                         <td>${resume.uploadedBy}</td>

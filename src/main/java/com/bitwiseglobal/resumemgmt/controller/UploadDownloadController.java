@@ -20,7 +20,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.amazonaws.services.s3.model.AmazonS3Exception;
 import com.amazonaws.services.s3.model.PutObjectResult;
 import com.bitwiseglobal.resumemgmt.S3Wrapper;
 import com.bitwiseglobal.resumemgmt.bd.ResumeMgmtBD;
@@ -33,9 +35,9 @@ import com.bitwiseglobal.resumemgmt.entityvo.Skill;
  */
 
 @Controller
-public class UploadController {
+public class UploadDownloadController {
 
-	private static final Logger logger = LoggerFactory.getLogger(UploadController.class);
+	private static final Logger logger = LoggerFactory.getLogger(UploadDownloadController.class);
 	private static final String ERROR_MSG = "errorMsg";
 
 	@Autowired
@@ -92,7 +94,7 @@ public class UploadController {
 
 				resumeName = multipartFile.getOriginalFilename();
 				logger.debug(methodName + "file name=" + multipartFile.getOriginalFilename());
-				logger.debug(methodName+ "File size="+multipartFile.getSize());
+				logger.debug(methodName + "File size=" + multipartFile.getSize());
 				if (multipartFile.getSize() > getFileSize()) {
 					FileSizeLimitExceededException e = new FileSizeLimitExceededException("LimitExceed", 0, 0);
 					throw e;
@@ -105,15 +107,12 @@ public class UploadController {
 
 				// Save resume in db
 				Resume resume = resumeMgmtBD.addResume(resumeName, skills);
-				
+
 				logger.info("Resume details saved sucessfully");
 
 				// AWS S3 file upload
-
-				
-				  List<PutObjectResult> list = s3Wrapper.upload(multipartFiles);
-				  logger.info("File uploaded successfully" + list.size());
-				 
+				List<PutObjectResult> list = s3Wrapper.upload(multipartFiles, resume.getResumeID().toString());
+				logger.info("File uploaded successfully" + list.size());
 
 				model.addAttribute("uploadSuccess", "true");
 
@@ -137,6 +136,45 @@ public class UploadController {
 		return "bw-upload";
 	}
 
+	/**
+	 * 
+	 * @param key
+	 *            = pass key as file name e.g abc.txt
+	 * @return
+	 * @throws IOException
+	 */
+	@RequestMapping(value = "/download", method = RequestMethod.GET)
+	public ResponseEntity<byte[]> download(@RequestParam String key, @RequestParam String fileName) throws IOException {
+
+		ResponseEntity<byte[]> entity = null;
+		try {
+
+			if (key != null && !key.isEmpty() && fileName != null && !fileName.isEmpty()) {
+				entity = s3Wrapper.download(key, fileName);
+				logger.info("File downloaded successfully");
+			} else {
+				logger.warn("Null or Empty input");
+			}
+		} catch (AmazonS3Exception amazonS3Exception) {
+			logger.warn("Exception while downloding file" + amazonS3Exception);
+		} catch (Exception e) {
+			logger.warn("Exception while downloding file" + e);
+		}
+
+		return entity;
+	}
+
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	public String list(Model model) throws IOException {
+		logger.debug("List of all uploaded files" + s3Wrapper.list());
+		model.addAttribute("files", s3Wrapper.list());
+		return "fileListing";
+	}
+
+	private int getFileSize() {
+		return Integer.parseInt(maxFileSize) * 1024 * 1024;
+	}
+
 	private void handleException(String message, Model model) {
 
 		logger.debug(" Exception details" + message);
@@ -154,31 +192,13 @@ public class UploadController {
 			model.addAttribute(ERROR_MSG, "Exceptioin occured while saving / uploading resume");
 			break;
 		case "FileSizeLimitExceededException":
-			model.addAttribute(ERROR_MSG, "File exceeds its maximum permitted size of "+maxFileSize+"Mb");
+			model.addAttribute(ERROR_MSG, "File exceeds its maximum permitted size of " + maxFileSize + "Mb");
 			break;
+		case "FileNotFound":
+			model.addAttribute(ERROR_MSG, "File Not Found");
+			break;
+
 		}
-	}
-
-	/**
-	 * 
-	 * @param key = pass key as file name e.g abc.txt
-	 * @return
-	 * @throws IOException
-	 */
-	@RequestMapping(value = "/download", method = RequestMethod.GET)
-	public ResponseEntity<byte[]> download(@RequestParam String key) throws IOException {
-		return s3Wrapper.download(key);
-	}
-
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String list(Model model) throws IOException {
-		logger.debug("List of all uploaded files" + s3Wrapper.list());
-		model.addAttribute("files", s3Wrapper.list());
-		return "fileListing";
-	}
-
-	private int getFileSize() {
-		return Integer.parseInt(maxFileSize) * 1024*1024;
 	}
 
 }
