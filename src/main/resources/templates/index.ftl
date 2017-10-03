@@ -49,7 +49,7 @@
                     <span class="icon-bar"></span>
                 </button>
 <!--                 <img src="../images/bwlogo1.png"/>
- -->                <a class="navbar-brand" href="index.html">Bitwise - Resume Portal v0.1</a>
+ -->                <a class="navbar-brand" href="/">Bitwise - Resume Portal v0.1</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -63,16 +63,16 @@
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        <!-- <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
                         </li>
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
-                        <li class="divider"></li>
+                        <li class="divider"></li> -->
                         <li>
-                        	<form action="/logout" method="post">
-					          	<input type="submit" class="fa fa-sign-out fa-fw" value="LogOut" /> 
-					          	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-							</form>
+                        	<a href="#" id="logout-link"><i class="fa fa-gear fa-sign-out fa-fw"></i> Logout</a>
+                            <form action="/logout" style="display:hidden;" id="bwlogoutform" method="post">
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                            </form>
                         </li>
                         	
                         </li>
@@ -87,13 +87,13 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="index.html"><i class="fa fa-cloud fa-fw"></i> Resume Portal - Home</a>
+                            <a href="/"><i class="fa fa-cloud fa-fw"></i> Resume Portal - Home</a>
                         </li>
                         <li>
                             <a href="/uploadLanding"><i class="fa fa-cloud-upload fa-fw"></i> Upload</a>
                         </li>
                         <li>
-                            <a href="/searchLanding"><i class="fa fa-search fa-fw"></i> Search</a>
+                            <a href="/search-resume"><i class="fa fa-search fa-fw"></i> Search</a>
                         </li>
                     </ul>
                 </div>
@@ -135,7 +135,7 @@
                                 <div class="col-xs-3">
                                     <i class="fa fa-search fa-5x"></i>
                                 </div>
-                                <a href="/searchLanding" style="color: #fff">
+                                <a href="/search-resume" style="color: #fff">
                                 <div class="col-xs-9 text-right">
                                     <div class="huge">Search</div>
                                 </div>
@@ -166,6 +166,8 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="js/sb-admin-2.js"></script>
+        <script src="js/bw-portal-1.js"></script>
+
 
 </body>
 
