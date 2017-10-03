@@ -21,7 +21,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
     protected void configure(HttpSecurity http) throws Exception {
-		System.out.println("Inside web sucurity config");
 		http
         .authorizeRequests()
 	        .antMatchers("/img/**", "/css/**","/js/**","/fonts/**").permitAll()	
