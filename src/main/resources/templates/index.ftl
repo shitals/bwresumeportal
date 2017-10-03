@@ -48,9 +48,9 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-<!--                 <img src="../images/bwlogo1.png"/>
- -->                <a class="navbar-brand" href="/rmLanding">Bitwise - Resume Portal v0.1</a>
-            </div>
+<!--                 <img src="../images/bwlogo1.png"/>-->                
+                <a class="navbar-brand" href="/rmLanding">Bitwise - Resume Portal v0.1</a>
+        </div>
             <!-- /.navbar-header -->
 
 

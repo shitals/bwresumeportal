@@ -55,7 +55,7 @@ public class S3Wrapper {
 		return putObjectResult;
 	}
 
-	public List<PutObjectResult> upload(MultipartFile[] multipartFiles) {
+	public List<PutObjectResult> upload(MultipartFile[] multipartFiles,String uploadKey) {
 		List<PutObjectResult> putObjectResults = new ArrayList<>();
 
 		Arrays.stream(multipartFiles)
@@ -63,7 +63,7 @@ public class S3Wrapper {
 				.forEach(multipartFile -> {
 					try {
 						
-						putObjectResults.add(upload(multipartFile.getInputStream(), multipartFile.getOriginalFilename()));
+						putObjectResults.add(upload(multipartFile.getInputStream(), uploadKey));
 					} catch (IOException e) {
 						new Exception(e);
 					}
@@ -72,7 +72,7 @@ public class S3Wrapper {
 		return putObjectResults;
 	}
 
-	public ResponseEntity<byte[]> download(String key) throws IOException {
+	public ResponseEntity<byte[]> download(String key,String uploadedFileName) throws IOException {
 		GetObjectRequest getObjectRequest = new GetObjectRequest(bucket, key);
 
 		S3Object s3Object = amazonS3Client.getObject(getObjectRequest);
@@ -81,7 +81,7 @@ public class S3Wrapper {
 
 		byte[] bytes = IOUtils.toByteArray(objectInputStream);
 
-		String fileName = URLEncoder.encode(key, "UTF-8").replaceAll("\\+", "%20");
+		String fileName = URLEncoder.encode(uploadedFileName, "UTF-8").replaceAll("\\+", "%20");
 
 		HttpHeaders httpHeaders = new HttpHeaders();
 		httpHeaders.setContentType(MediaType.APPLICATION_OCTET_STREAM);

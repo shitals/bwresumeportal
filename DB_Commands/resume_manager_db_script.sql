@@ -70,12 +70,11 @@ INSERT INTO skill(name) VALUES ('Java Microservices');
 INSERT INTO skill(name) VALUES ('Machine learning');
 INSERT INTO skill(name) VALUES ('R');
 INSERT INTO skill(name) VALUES ('SharePoint');
+INSERT INTO skill(name) VALUES ('J2EE');
 
 #INSERT INTO user(user_id,first_name,middle_name,last_name) VALUES ('dummyid','dummyfirst','dummymiddle','dummylast');
 
 
-alter table resume_portal_db.resume add unique(name);
-INSERT INTO user(user_id,first_name,middle_name,last_name) VALUES ('1','bitwise','bitwise','bitwise');
 
 CREATE USER 'bwuser'@'localhost' IDENTIFIED BY 'password';
-GRANT ALL ON resume_portal_db.* TO 'bwuser'@'localhost';
+GRANT ALL ON resume_portal_db.* TO 'bitwise'@'localhost';

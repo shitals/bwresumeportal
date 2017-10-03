@@ -105,7 +105,7 @@ public class ResumeMgmtBD {
 	 * @param resumeName
 	 * @param skills
 	 */
-	public void addResume(String resumeName, String skills) {
+	public Resume addResume(String resumeName, String skills) {
 		
 		// retrieve skills
 		Set<Skill> skillSet=new HashSet<Skill>(getSkills(skills));
@@ -121,7 +121,9 @@ public class ResumeMgmtBD {
 		Timestamp timestamp = new Timestamp(new Date().getTime());
 		resume.setUploadTimestamp(timestamp);
 		
-		resumeRepository.save(resume);
+		return resumeRepository.save(resume);
+		
+		
 	}
 
 	public Set<ResumeDisplayDTO> getResumeBySkills(String commaSeperatedSkillsStr) {

@@ -69,7 +69,7 @@
                     <span class="icon-bar"></span>
                 </button>
 <!--                 <img src="../images/bwlogo1.png"/>
- -->                <a class="navbar-brand" href="/rmLanding">Bitwise - Resume Portal v0.1</a>
+ -->                <a class="navbar-brand" href="/">Bitwise - Resume Portal v0.1</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -113,6 +113,10 @@
                             <a href="#" class="logout-link"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
+                    
+<#if downloadSuccess?? && downloadSuccess="false">
+	 <font color="red"> <label  class="col-md-4 control-label" for="selectbasic"> ${errorMsg} </label> </font>
+</#if>
                 </div>
                 <!-- /.sidebar-collapse -->
             </div>
@@ -169,7 +173,7 @@
                                 <tbody>
                                 <#list resumes as resume>
                                     <tr class="gradeA">
-                                        <td><a href="/download?key=${resume.resumeName}">${resume.resumeName}</a></td>
+                                        <td><a href="/download?key=${resume.resumeId}&fileName=${resume.resumeName}">${resume.resumeName}</a></td>
                                         <td>${resume.resumeSkills}</td>
                                         <td>${resume.uploadedTime}</td>
                                         <td>${resume.uploadedBy}</td>
