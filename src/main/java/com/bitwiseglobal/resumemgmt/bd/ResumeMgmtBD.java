@@ -20,6 +20,7 @@ import com.bitwiseglobal.resumemgmt.entityvo.User;
 import com.bitwiseglobal.resumemgmt.repository.IResumeRepository;
 import com.bitwiseglobal.resumemgmt.repository.ISkillRepository;
 import com.bitwiseglobal.resumemgmt.repository.IUserRepository;
+import com.bitwiseglobal.resumemgmt.service.UserService;
 
 
 
@@ -35,6 +36,9 @@ public class ResumeMgmtBD {
 	@Autowired
 	ISkillRepository skillRepository;
 
+	@Autowired
+	UserService userService;
+	
 	public void addUser() {
 		User user = new User();
 		user.setUserId("TestID");
@@ -78,10 +82,10 @@ public class ResumeMgmtBD {
 
 	
 	public void addResume() {
-		BigInteger i = new BigInteger("4");
 		BigInteger j1 = new BigInteger("43");
 		BigInteger j2 = new BigInteger("44");
-		User user = userRepository.findOne(i);
+		User user = userService.findLoggedInUser();
+		System.out.println("current active user: "+user.getFirstName() + user.getLastName());
 		
 		Skill skill1 = skillRepository.findOne(j1);
 		Skill skill2 = skillRepository.findOne(j2);
@@ -110,8 +114,7 @@ public class ResumeMgmtBD {
 		// retrieve skills
 		Set<Skill> skillSet=new HashSet<Skill>(getSkills(skills));
 
-		BigInteger i = new BigInteger("1");
-		User user = userRepository.findOne(i);
+		User user = userService.findLoggedInUser();
 		
 		Resume resume = new Resume();
 		resume.setFilePath(resumeName);
