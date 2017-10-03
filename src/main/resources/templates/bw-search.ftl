@@ -73,7 +73,7 @@
             </div>
             <!-- /.navbar-header -->
 
-            <ul class="nav navbar-top-links navbar-right">
+            <ul class="nav navbar-top-links navbar-right hidden-xs">
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
@@ -85,7 +85,7 @@
                         </li>
                         <li class="divider"></li> -->
                         <li>
-                            <a href="#" id="logout-link"><i class="fa fa-gear fa-sign-out fa-fw"></i> Logout</a>
+                            <a href="#" id="logout-link" class="logout-link"><i class="fa fa-gear fa-sign-out fa-fw"></i> Logout</a>
                         	<form action="/logout" style="display:hidden;" id="bwlogoutform" method="post">
 					          	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 							</form>
@@ -101,13 +101,16 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="/"><i class="fa fa-cloud fa-fw"></i> Resume Portal - Home</a>
+                            <a href="/rmLanding"><i class="fa fa-cloud fa-fw"></i> Resume Portal - Home</a>
                         </li>
                         <li>
                             <a href="/uploadLanding"><i class="fa fa-cloud-upload fa-fw"></i> Upload</a>
                         </li>
                         <li>
                             <a href="/search-resume"><i class="fa fa-search fa-fw"></i> Search</a>
+                        </li>
+                        <li class="visible-xs-block">
+                            <a href="#" class="logout-link"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     
@@ -136,7 +139,7 @@
                     <form action="/search-resume"  role="form">
                          <div class="form-group">
                             <label>Select Skills</label>
-                            <div class="well" style="max-height: 400px; overflow: auto;">
+                            <div class="well" style="max-height: 400px; overflow: auto; padding: 3px">
                                 <ul id="skillList" class="list-group checked-list-box">
                                 		<#if skills??>
 	                                     <#list skills as skill>
