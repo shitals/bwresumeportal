@@ -3,14 +3,12 @@
  */
 package com.bitwiseglobal.resumemgmt.controller;
 
-import org.jboss.logging.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import com.bitwiseglobal.resumemgmt.bd.ResumeMgmtBD;
 
 /**
  * @author Chetan Menge
@@ -19,7 +17,7 @@ import com.bitwiseglobal.resumemgmt.bd.ResumeMgmtBD;
 @Controller
 public class LoginController {
 
-	private static final Logger logger=Logger.getLogger(LoginController.class);
+	private static final Logger logger=LoggerFactory.getLogger(LoginController.class);
 
 
 
