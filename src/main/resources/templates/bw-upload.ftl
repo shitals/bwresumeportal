@@ -115,7 +115,7 @@
             </div>
             <!-- /.row -->
             <div class="row">
-<form class="form-horizontal" method="POST" action="/upload" enctype="multipart/form-data">
+<form class="form-horizontal" method="POST" action="/upload" enctype="multipart/form-data" style="margin-left: 15px;">
 <fieldset>
 
 <!-- Select Basic -->

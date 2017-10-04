@@ -153,8 +153,8 @@
 
                       <!--   <button class="btn btn-primary col-xs-12" id="get-checked-data">Get Checked Data</button> -->
                         <button type="submit" class="btn btn-default">Search</button>
-                        <button type="reset" class="btn btn-default">Reset</button>
-                    </form>
+<!--                         <button type="reset" class="btn btn-default">Reset</button>
+ -->                    </form>
 
                 </div>
 
@@ -209,7 +209,12 @@
     <script src="js/sb-admin-2.js"></script>
     <script src="js/bw-portal-1.js"></script>
 <script type="text/javascript">
-        
+        function getUrlVar(key){
+    var result = new RegExp(key + "=([^&]*)", "i").exec(window.location.search); 
+    return result && unescape(result[1]) || ""; 
+};
+var selSkillsResult=getUrlVar('selectedSkills').split(',');
+
         $(function () {
     $('.list-group.checked-list-box .list-group-item').each(function () {
         
@@ -239,7 +244,10 @@
         $checkbox.on('change', function () {
             updateDisplay();
         });
-          
+        if(selSkillsResult.indexOf($widget.attr("skill-id"))!=-1){
+            $checkbox.prop('checked', true);
+            updateDisplay();
+        }
 
         // Actions
         function updateDisplay() {
