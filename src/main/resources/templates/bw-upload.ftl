@@ -51,12 +51,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-<!--                 <img src="../images/bwlogo1.png"/>
- -->                <a class="navbar-brand" href="/">Bitwise - Resume Portal v0.1</a>
+<!--                 <img src="../images/bwlogo1.png"/>-->                
+            <a class="navbar-brand" href="/rmLanding">Bitwise - Resume Portal v0.1</a>
+
             </div>
             <!-- /.navbar-header -->
 
-            <ul class="nav navbar-top-links navbar-right">
+            <ul class="nav navbar-top-links navbar-right hidden-xs">
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
@@ -68,7 +69,7 @@
                         </li>
                         <li class="divider"></li> -->
                         <li>
-                        	<a href="#" id="logout-link"><i class="fa fa-gear fa-sign-out fa-fw"></i> Logout</a>
+                        	<a href="#" id="logout-link" class="logout-link"><i class="fa fa-gear fa-sign-out fa-fw"></i> Logout</a>
                             <form action="/logout" style="display:hidden;" id="bwlogoutform" method="post">
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                             </form>
@@ -84,13 +85,16 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="/"><i class="fa fa-cloud fa-fw"></i> Resume Portal - Home</a>
+                            <a href="/rmLanding"><i class="fa fa-cloud fa-fw"></i> Resume Portal - Home</a>
                         </li>
                         <li>
                             <a href="/uploadLanding"><i class="fa fa-cloud-upload fa-fw"></i> Upload</a>
                         </li>
                         <li>
                             <a href="/search-resume"><i class="fa fa-search fa-fw"></i> Search</a>
+                        </li>
+                        <li class="visible-xs-block">
+                            <a href="#" class="logout-link"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                 </div>
@@ -111,7 +115,7 @@
             </div>
             <!-- /.row -->
             <div class="row">
-<form class="form-horizontal" method="POST" action="/upload" enctype="multipart/form-data">
+<form class="form-horizontal" method="POST" action="/upload" enctype="multipart/form-data" style="margin-left: 15px;">
 <fieldset>
 
 <!-- Select Basic -->
@@ -125,10 +129,12 @@
 
   <div class="col-md-4 dropdown cq-dropdown" data-name='skills'>
       <button class="btn btn-default btn-sm dropdown-toggle" name="category" type="button" id="dropdown1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width: 150px;"> Skills <span class="caret"></span> </button>
-      <ul class="dropdown-menu" aria-labelledby="dropdown1">
- <#list skills?keys as key>
-            <li><label class="radio-btn"><input type="checkbox" value='${key?html}'>${skills[key]?html}</label></li>
- </#list>
+      <ul class="dropdown-menu" aria-labelledby="dropdown1" style="margin-left: 14px; max-height: 250px; overflow-y: auto;" >
+ <#if skills??>
+	<#list skills as skill>
+            <li><label class="radio-btn"><input type="checkbox" value='${skill.skillId?html}' style="margin-right: 6px;">${skill.name?html}</label></li>
+ 	</#list>
+ </#if>	
         
       </ul>
     </div>

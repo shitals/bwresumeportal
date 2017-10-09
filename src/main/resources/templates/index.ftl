@@ -48,15 +48,15 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-<!--                 <img src="../images/bwlogo1.png"/>
- -->                <a class="navbar-brand" href="/">Bitwise - Resume Portal v0.1</a>
-            </div>
+<!--                 <img src="../images/bwlogo1.png"/>-->                
+                <a class="navbar-brand" href="/rmLanding">Bitwise - Resume Portal v0.1</a>
+        </div>
             <!-- /.navbar-header -->
 
 
             
 			
-            <ul class="nav navbar-top-links navbar-right">
+            <ul class="nav navbar-top-links navbar-right hidden-xs">
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -69,7 +69,7 @@
                         </li>
                         <li class="divider"></li> -->
                         <li>
-                        	<a href="#" id="logout-link"><i class="fa fa-gear fa-sign-out fa-fw"></i> Logout</a>
+                        	<a href="#" id="logout-link" class="logout-link"><i class="fa fa-gear fa-sign-out fa-fw"></i> Logout</a>
                             <form action="/logout" style="display:hidden;" id="bwlogoutform" method="post">
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                             </form>
@@ -87,13 +87,16 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="/"><i class="fa fa-cloud fa-fw"></i> Resume Portal - Home</a>
+                            <a href="/rmLanding"><i class="fa fa-cloud fa-fw"></i> Resume Portal - Home</a>
                         </li>
                         <li>
                             <a href="/uploadLanding"><i class="fa fa-cloud-upload fa-fw"></i> Upload</a>
                         </li>
                         <li>
                             <a href="/search-resume"><i class="fa fa-search fa-fw"></i> Search</a>
+                        </li>
+                        <li class="visible-xs-block">
+                            <a href="#" class="logout-link"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                 </div>
