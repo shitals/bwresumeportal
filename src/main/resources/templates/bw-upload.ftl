@@ -130,9 +130,11 @@
   <div class="col-md-4 dropdown cq-dropdown" data-name='skills'>
       <button class="btn btn-default btn-sm dropdown-toggle" name="category" type="button" id="dropdown1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width: 150px;"> Skills <span class="caret"></span> </button>
       <ul class="dropdown-menu" aria-labelledby="dropdown1" style="margin-left: 14px;" >
- <#list skills?keys as key>
-            <li><label class="radio-btn"><input type="checkbox" value='${key?html}' style="margin-right: 6px;">${skills[key]?html}</label></li>
- </#list>
+ <#if skills??>
+	<#list skills as skill>
+            <li><label class="radio-btn"><input type="checkbox" value='${skill.skillId?html}' style="margin-right: 6px;">${skill.name?html}</label></li>
+ 	</#list>
+ </#if>	
         
       </ul>
     </div>
