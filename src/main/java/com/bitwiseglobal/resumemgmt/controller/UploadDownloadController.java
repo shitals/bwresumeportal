@@ -50,7 +50,7 @@ public class UploadDownloadController {
 	private String maxFileSize;
 
 	// TODO validate impact of having class level variable
-	private HashMap<String, String> skillsMap;
+	private Iterable<Skill> skills;
 
 	@RequestMapping(value = "/uploadLanding", method = RequestMethod.GET)
 	public String uploadLanding(Model model) {
@@ -61,25 +61,20 @@ public class UploadDownloadController {
 		return "bw-upload";
 	}
 
-	private HashMap<String, String> getSkills() {
+	private Iterable<Skill> getSkills() {
 		final String methodName = "UploadController.getSkills";
 
-		if (skillsMap == null || skillsMap.isEmpty()) {
+		if (skills == null) {
 
-			skillsMap = new HashMap<String, String>();
-
-			Iterable<Skill> skills = resumeMgmtBD.getSkills();
+			skills = resumeMgmtBD.getSkills();
 			if (skills != null) {
-				for (Skill skill : skills) {
-					String skillId = skill.getSkillId().toString();
-					skillsMap.put(skillId, skill.getName());
-				}
-				logger.info(methodName + "Skills found= {}" + skillsMap);
+				
+				logger.info(methodName + "Skills found= {}" + skills);
 			} else {
 				logger.debug(methodName + "No skills found");
 			}
 		}
-		return skillsMap;
+		return skills;
 	}
 
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
